@@ -13,5 +13,10 @@ namespace Utility
 
             return camera.ViewportToWorldPoint(newViewportPosition);
         }
+
+        public static Vector3 RotateVector(Vector3 vector, float angle)
+        {
+            return Quaternion.AngleAxis(angle, Vector3.forward) * vector;
+        }
     }
 }
