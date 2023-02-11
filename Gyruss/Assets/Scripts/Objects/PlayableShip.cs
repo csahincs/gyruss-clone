@@ -8,16 +8,18 @@ namespace Objects
         {
             base.Initialize(hp);
 
-            AngularDirection = 0f;
-            LinearDirection = 0f;
-            
             AngularSpeed = 50f;
-            LinearSpeed = 5f;
+            AngularDirection = 0f;
+            
+            LinearSpeed = 0f;
+            LinearDirection = 0f;
         }
 
         public void Shoot()
         {
-            
+            Bullet bullet = PoolManager.Instance.BulletPool.Get();
+            bullet.transform.position = transform.position;
+            bullet.Initialize(1, -transform.position);
         }
 
         public override void Despawn()

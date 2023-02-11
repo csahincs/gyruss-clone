@@ -1,19 +1,26 @@
+using System;
 using Managers;
 
 namespace Objects
 {
     public class EnemyShip : BaseShip
     {
+        public EventHandler<EnemyShip> DespawnEventHandler;
+        
         public override void Initialize(int hp)
         {
             base.Initialize(hp);
-
-            AngularDirection = 100f;
-            LinearDirection = 0.1f;
+            
+            AngularSpeed = 50f;
+            AngularDirection = 1;
+            
+            LinearSpeed = 1f;
+            LinearDirection = 1f;
         }
 
         public override void Despawn()
         {
+            DespawnEventHandler?.Invoke(this, this);
             PoolManager.Instance.EnemyShipPool.Release(this);
         }
     }

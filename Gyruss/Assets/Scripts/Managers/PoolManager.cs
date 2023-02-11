@@ -31,12 +31,13 @@ namespace Managers
         // Called when an item is returned to the pool using Release
         private void OnReturnedToPool(PlayableShip element)
         {
-
+            element.gameObject.SetActive(false);
         }
 
         // Called when an item is taken from the pool using Get
         private void OnTakeFromPool(PlayableShip element)
         {
+            element.gameObject.SetActive(true);
         }
 
         // If the pool capacity is reached then any items returned will be destroyed.
@@ -66,12 +67,13 @@ namespace Managers
         // Called when an item is returned to the pool using Release
         private void OnReturnedToPool(EnemyShip element)
         {
-
+            element.gameObject.SetActive(false);
         }
 
         // Called when an item is taken from the pool using Get
         private void OnTakeFromPool(EnemyShip element)
         {
+            element.gameObject.SetActive(true);
         }
 
         // If the pool capacity is reached then any items returned will be destroyed.
@@ -83,41 +85,40 @@ namespace Managers
 
         #endregion
         
-        /*
         #region Bullet
 
-        [SerializeField] private EnemyShip EnemyShip;
+        [SerializeField] private Bullet Bullet;
 
-        private IObjectPool<EnemyShip> _enemyShipPool;
-        public IObjectPool<EnemyShip> EnemyShipPool =>
-            _enemyShipPool ??= new LinkedPool<EnemyShip>(CreateEnemyShipPooledItem, OnTakeFromPool, 
+        private IObjectPool<Bullet> _bulletPool;
+        public IObjectPool<Bullet> BulletPool =>
+            _bulletPool ??= new LinkedPool<Bullet>(CreateBulletPooledItem, OnTakeFromPool, 
                 OnReturnedToPool, OnDestroyPoolObject, CollectionChecks, MaxPoolSize);
 
-        private EnemyShip CreateEnemyShipPooledItem()
+        private Bullet CreateBulletPooledItem()
         {
-            var go = Instantiate(EnemyShip);
+            var go = Instantiate(Bullet);
             return go;
         }
 
         // Called when an item is returned to the pool using Release
-        private void OnReturnedToPool(EnemyShip element)
+        private void OnReturnedToPool(Bullet element)
         {
-
+            element.gameObject.SetActive(false);
         }
 
         // Called when an item is taken from the pool using Get
-        private void OnTakeFromPool(EnemyShip element)
+        private void OnTakeFromPool(Bullet element)
         {
+            element.gameObject.SetActive(true);
         }
 
         // If the pool capacity is reached then any items returned will be destroyed.
         // We can control what the destroy behavior does, here we destroy the GameObject.
-        private void OnDestroyPoolObject(EnemyShip element)
+        private void OnDestroyPoolObject(Bullet element)
         {
             Destroy(element.gameObject);
         }
 
         #endregion
-        */
     }
 }

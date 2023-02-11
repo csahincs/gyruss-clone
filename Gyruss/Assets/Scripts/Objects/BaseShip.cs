@@ -35,6 +35,11 @@ namespace Objects
         public void TakeDamage(int damage)
         {
             Hp -= damage;
+
+            if (Hp <= 0)
+            {
+                Despawn();
+            }
         }
 
         public abstract void Despawn();

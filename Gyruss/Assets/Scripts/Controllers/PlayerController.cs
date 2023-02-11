@@ -21,24 +21,6 @@ namespace Controllers
                 return;
             }
             
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                PlayableShip.LinearDirection = -1f;
-            }
-            if (Input.GetKeyUp(KeyCode.W))
-            {
-                PlayableShip.LinearDirection = 0f;
-            }
-            
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                PlayableShip.LinearDirection = 1f;
-            }
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                PlayableShip.LinearDirection = 0f;
-            }
-            
             if (Input.GetKeyDown(KeyCode.A))
             {
                 PlayableShip.AngularDirection = -1f;
