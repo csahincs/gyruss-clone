@@ -58,9 +58,3 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-# IntelliJ
-.idea/
-
-# Apple folder atributes file.
-.DS_Store
-
