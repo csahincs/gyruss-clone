@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8277693752973123755}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectionChecks: 1
   MaxPoolSize: 10
-  PlayableShip: {fileID: 3007216118790056061, guid: 8fa912c573ec946c0a3a8815fc3da04e, type: 3}
+  PlayableShip: {fileID: 6275661873203592022, guid: a81892321b495437ca188af0547803e5, type: 3}
   EnemyShip: {fileID: -4757043139428348159, guid: bd7c3657f2f1742efbf63cf692ec5402, type: 3}
   Bullet: {fileID: 6665582971277162805, guid: 2fffa470dd94c40bcbfdce9869340060, type: 3}

@@ -8,12 +8,19 @@ namespace Controllers
     {
         private PlayableShip PlayableShip { get; set; }
         
+        /// <summary>
+        /// Sets the playable ship property 
+        /// </summary>
+        /// <param name="playableShip">Ship to be controlled</param>
         public void Initialize(PlayableShip playableShip)
         {
             PlayableShip = playableShip;
         }
         
-        // Update is called once per frame
+        
+        /// <summary>
+        /// Checks movement and firing inputs
+        /// </summary>
         void Update()
         {
             if (PlayableShip == null)
@@ -43,6 +50,14 @@ namespace Controllers
             {
                 PlayableShip.Shoot();
             }
+        }
+
+        /// <summary>
+        /// Resets the playable ship property
+        /// </summary>
+        public void ReleasePlayableShip()
+        {
+            PlayableShip = null;
         }
     }
 }

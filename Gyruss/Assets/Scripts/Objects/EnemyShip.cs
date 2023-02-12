@@ -1,5 +1,6 @@
 using System;
 using Managers;
+using UnityEngine;
 
 namespace Objects
 {
@@ -24,6 +25,8 @@ namespace Objects
         public override void Despawn()
         {
             DespawnEventHandler?.Invoke(this, this);
+
+            GameManager.Instance.Score += Mathf.FloorToInt((1 - CurrentDiameter / MaxDiameter) * 10f);
             PoolManager.Instance.EnemyShipPool.Release(this);
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Managers;
 using Objects;
 using UnityEngine;
@@ -11,21 +12,30 @@ namespace Controllers
         private int _leftWaveCount = 0;
         private int _enemyShipLeftInWave;
 
+        public List<EnemyShip> SpawnedEnemies = new List<EnemyShip>();
 
+        /// <summary>
+        /// Initializes enemy spawn controller for the current game
+        /// </summary>
+        /// <param name="waveCount">Total number of enemy waves for the current game</param>
         public void Initialize(int waveCount)
-        {
-            if (_leftWaveCount > 0)
-            {
-                return;
-            }
-
+        { 
             _leftWaveCount = waveCount;
             
             PrepareNextWave();
         }
 
+        /// <summary>
+        /// Spawns new batch of enemies for the next round. If no wave left, ends the game
+        /// </summary>
         private void PrepareNextWave()
         {
+            if (_leftWaveCount == 0)
+            {
+                GameManager.Instance.EndGame();
+                return;
+            }
+            
             int enemySpawnCount = Random.Range(2, 5);
             _enemyShipLeftInWave = enemySpawnCount;
 
@@ -36,26 +46,41 @@ namespace Controllers
                     i * (360 / enemySpawnCount));
                 enemy.Initialize(1);
                 enemy.DespawnEventHandler += EnemyShipDespawnEventHandler;
+                SpawnedEnemies.Add(enemy);
             }
 
             _leftWaveCount--;
         }
 
+        /// <summary>
+        /// Checks if the current wave is over or not after every ship despawn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnemyShipDespawnEventHandler(object sender, EnemyShip e)
         {
             e.DespawnEventHandler -= EnemyShipDespawnEventHandler;
-
-            _enemyShipLeftInWave--;
-
-            if (_leftWaveCount == 0)
-            {
-                // todo(cem): finish current level
-            }
+            SpawnedEnemies.Remove(e);
+            _enemyShipLeftInWave -= 1;
             
             if (_enemyShipLeftInWave <= 0)
             {
                 PrepareNextWave();
             }
+        }
+
+        /// <summary>
+        /// Despawns all enemy ships
+        /// </summary>
+        public void DespawnAllEnemies()
+        {
+            foreach (EnemyShip enemy in SpawnedEnemies)
+            {
+                enemy.DespawnEventHandler -= EnemyShipDespawnEventHandler;
+                PoolManager.Instance.EnemyShipPool.Release(enemy);
+            }
+            
+            SpawnedEnemies.Clear();
         }
     }
 }
