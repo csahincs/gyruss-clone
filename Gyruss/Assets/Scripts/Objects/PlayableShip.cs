@@ -1,4 +1,5 @@
 using Managers;
+using UnityEngine;
 
 namespace Objects
 {
@@ -22,7 +23,9 @@ namespace Objects
         {
             Bullet bullet = PoolManager.Instance.BulletPool.Get();
             bullet.transform.position = transform.position;
-            bullet.Initialize(1, -transform.position);
+            Vector3 bulletDirection = -transform.position;
+            bulletDirection.z = 0;
+            bullet.Initialize(1, bulletDirection);
         }
 
         public override void Despawn()

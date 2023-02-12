@@ -29,7 +29,7 @@ namespace Objects
             CurrentDiameter = Mathf.Min(CurrentDiameter + LinearDirection * LinearSpeed * Time.deltaTime, MaxDiameter);
             Direction = GyrussUtility.RotateVector(Direction, AngularDirection * AngularSpeed * Time.deltaTime);
             
-            transform.position = Direction * CurrentDiameter;
+            transform.position = Direction * CurrentDiameter + Vector3.back;
             transform.LookAt(Vector3.zero);
         }
         

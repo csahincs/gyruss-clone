@@ -1,3 +1,4 @@
+using System;
 using Controllers;
 using Objects;
 using UnityEngine;
@@ -8,8 +9,19 @@ namespace Managers
     public class GameManager : Singleton<GameManager>
     {
         public Camera Camera { get; private set; }
-
         public float PlayableShipDiameter { get; private set; }
+
+        private int _score;
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+                ScoreUpdateEventHandler?.Invoke(this, _score);
+            }
+        }
+        public EventHandler<int> ScoreUpdateEventHandler;
 
         public override void Awake()
         {
