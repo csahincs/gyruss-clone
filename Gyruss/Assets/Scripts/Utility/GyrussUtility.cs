@@ -4,9 +4,9 @@ namespace Utility
 {
     public static class GyrussUtility
     {
-        public static Vector3 GetPositionInsideScreen(Camera camera, Vector3 oldPosition, Vector3 newPosition)
+        public static Vector3 GetPositionInsideScreen(Camera camera, Vector3 pos)
         {
-            Vector3 newViewportPosition = camera.WorldToViewportPoint(newPosition);
+            Vector3 newViewportPosition = camera.WorldToViewportPoint(pos);
             
             newViewportPosition.x = Mathf.Clamp(newViewportPosition.x, 0.07f, 0.93f);
             newViewportPosition.y = Mathf.Clamp(newViewportPosition.y, 0.07f, 0.93f);

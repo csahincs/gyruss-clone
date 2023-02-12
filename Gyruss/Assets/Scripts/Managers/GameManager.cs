@@ -25,12 +25,11 @@ namespace Managers
             PlayableShip playableShip = PoolManager.Instance.PlayableShipPool.Get();
             PlayerController.Instance.Initialize(playableShip);
             
+            playableShip.transform.position = 
+                GyrussUtility.GetPositionInsideScreen(Camera, Vector3.down * PlayableShipDiameter);
+            PlayableShipDiameter = Mathf.Abs(playableShip.transform.position.y);
             playableShip.Initialize(5);
-            playableShip.transform.position = Vector3.down * PlayableShipDiameter;
-            playableShip.transform.position =
-                GyrussUtility.GetPositionInsideScreen(Camera, Vector3.zero, 
-                    playableShip.transform.position);
-            
+
             EnemySpawnController.Instance.Initialize(5);
         }
     }

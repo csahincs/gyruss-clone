@@ -16,6 +16,9 @@ namespace Objects
             
             LinearSpeed = 1f;
             LinearDirection = 1f;
+
+            MaxDiameter = GameManager.Instance.PlayableShipDiameter * (4 / 5f);
+            CurrentDiameter = 0.1f;
         }
 
         public override void Despawn()

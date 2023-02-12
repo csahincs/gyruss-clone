@@ -10,26 +10,27 @@ namespace Objects
 
         public float AngularDirection { get; set; }
         public float LinearDirection { get; set; }
-
         protected float AngularSpeed { get; set; }
         protected float LinearSpeed { get; set; }
+        
+        public float CurrentDiameter { get; set; }
+        public float MaxDiameter { get; set; }
+
+        public Vector3 Direction;
 
         public virtual void Initialize(int hp)
         {
             Hp = hp;
+            Direction = transform.position.normalized;
         }
 
         protected virtual void Update()
         {
-            Vector3 currentPosition = transform.position;
-            Vector3 newPosition =
-                currentPosition + currentPosition.normalized * (LinearDirection * LinearSpeed * Time.deltaTime);
-
-            transform.position = GyrussUtility.GetPositionInsideScreen(GameManager.Instance.Camera, 
-                currentPosition, newPosition);
+            CurrentDiameter = Mathf.Min(CurrentDiameter + LinearDirection * LinearSpeed * Time.deltaTime, MaxDiameter);
+            Direction = GyrussUtility.RotateVector(Direction, AngularDirection * AngularSpeed * Time.deltaTime);
             
-            transform.RotateAround(Vector3.zero, Vector3.forward, 
-                AngularDirection * AngularSpeed * Time.deltaTime);
+            transform.position = Direction * CurrentDiameter;
+            transform.LookAt(Vector3.zero);
         }
         
         public void TakeDamage(int damage)

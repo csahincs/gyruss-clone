@@ -8,7 +8,6 @@ namespace Controllers
 {
     public class EnemySpawnController : Singleton<EnemySpawnController>
     {
-        private int _waveCount = 0;
         private int _leftWaveCount = 0;
         private int _enemyShipLeftInWave;
 
@@ -20,7 +19,6 @@ namespace Controllers
                 return;
             }
 
-            _waveCount = waveCount;
             _leftWaveCount = waveCount;
             
             PrepareNextWave();

@@ -13,6 +13,9 @@ namespace Objects
             
             LinearSpeed = 0f;
             LinearDirection = 0f;
+
+            MaxDiameter = GameManager.Instance.PlayableShipDiameter;
+            CurrentDiameter = GameManager.Instance.PlayableShipDiameter;
         }
 
         public void Shoot()
