@@ -15,6 +15,9 @@ namespace Managers
         [SerializeField] private GameMenu GameMenu;
         [SerializeField] private ResultMenu ResultMenu;
 
+        /// <summary>
+        /// Initializes menu elements list
+        /// </summary>
         public override void Awake()
         {
             base.Awake();
@@ -27,6 +30,9 @@ namespace Managers
             };
         }
 
+        /// <summary>
+        /// Initializes menu elements, and opens first menu
+        /// </summary>
         private void Start()
         {
             foreach (var t in _menuElements)
@@ -40,34 +46,56 @@ namespace Managers
             GameManager.Instance.GameEndEventHandler += GameEndEventHandler;
         }
 
+        /// <summary>
+        /// Event handler for game start event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameStartEventHandler(object sender, EventArgs e)
         {
             OpenGameMenu();
         }
         
+        /// <summary>
+        /// Event handler for game end event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameEndEventHandler(object sender, EventArgs e)
         {
             OpenResultMenu();
         }
 
+        /// <summary>
+        /// Closes all menu elements, and opens main menu
+        /// </summary>
         private void OpenMainMenu()
         {
             CloseAllMenuElements();
             MainMenu.Show();
         }
 
-        public void OpenGameMenu()
+        /// <summary>
+        /// Closes all menu elements, and opens game menu
+        /// </summary>
+        private void OpenGameMenu()
         {
             CloseAllMenuElements();
             GameMenu.Show();
         }
-
-        public void OpenResultMenu()
+        
+        /// <summary>
+        /// Closes all menu elements, and opens result menu
+        /// </summary>
+        private void OpenResultMenu()
         {
             CloseAllMenuElements();
             ResultMenu.Show();
         }
 
+        /// <summary>
+        /// Closes all menus
+        /// </summary>
         private void CloseAllMenuElements()
         {
             for (int i = 0; i < _menuElements.Count; i++)

@@ -4,6 +4,12 @@ namespace Utility
 {
     public static class GyrussUtility
     {
+        /// <summary>
+        /// Clamps given position accordingly to screen
+        /// </summary>
+        /// <param name="camera">Camera viewport</param>
+        /// <param name="pos">Position to be clamped</param>
+        /// <returns></returns>
         public static Vector3 GetPositionInsideScreen(Camera camera, Vector3 pos)
         {
             Vector3 newViewportPosition = camera.WorldToViewportPoint(pos);
@@ -14,6 +20,12 @@ namespace Utility
             return camera.ViewportToWorldPoint(newViewportPosition);
         }
 
+        /// <summary>
+        /// Rotates given vector around z axis by the given angle
+        /// </summary>
+        /// <param name="vector">Vector to be rotated</param>
+        /// <param name="angle">Angle to rotate</param>
+        /// <returns></returns>
         public static Vector3 RotateVector(Vector3 vector, float angle)
         {
             return Quaternion.AngleAxis(angle, Vector3.forward) * vector;

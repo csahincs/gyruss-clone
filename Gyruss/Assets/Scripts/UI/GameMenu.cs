@@ -11,6 +11,9 @@ namespace UI
         [SerializeField] private Button ExitButton;
         [SerializeField] private TMP_Text ScoreText;
 
+        /// <summary>
+        /// Initializes game menu elements
+        /// </summary>
         public override void Initialize()
         {
             ScoreText.text = "0";
@@ -21,17 +24,28 @@ namespace UI
             GameManager.Instance.ScoreUpdateEventHandler += ScoreUpdateEventHandler;
         }
 
+        /// <summary>
+        /// Updates score text
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScoreUpdateEventHandler(object sender, int e)
         {
             ScoreText.text = e.ToString();
         }
         
+        /// <summary>
+        /// Subscribe to score update event after opening
+        /// </summary>
         public override void Show()
         {
             base.Show();
             GameManager.Instance.ScoreUpdateEventHandler += ScoreUpdateEventHandler;
         }
-
+        
+        /// <summary>
+        /// Unsubscribe to score update event after opening
+        /// </summary>
         public override void Close()
         {
             GameManager.Instance.ScoreUpdateEventHandler -= ScoreUpdateEventHandler;

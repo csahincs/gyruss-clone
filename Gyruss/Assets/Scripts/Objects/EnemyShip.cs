@@ -8,6 +8,10 @@ namespace Objects
     {
         public EventHandler<EnemyShip> DespawnEventHandler;
         
+        /// <summary>
+        /// Sets initial speed, direction and diameter properties
+        /// </summary>
+        /// <param name="hp">Initial health point</param>
         public override void Initialize(int hp)
         {
             base.Initialize(hp);
@@ -22,6 +26,9 @@ namespace Objects
             CurrentDiameter = 0.1f;
         }
 
+        /// <summary>
+        /// Despawns the ship, and increases score
+        /// </summary>
         public override void Despawn()
         {
             DespawnEventHandler?.Invoke(this, this);

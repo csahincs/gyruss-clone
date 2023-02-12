@@ -13,6 +13,11 @@ namespace Objects
 
         private const float LIFETIME = 2f;
 
+        /// <summary>
+        /// Initializes the bullet with the given damage and direction
+        /// </summary>
+        /// <param name="damage">Damage dealt on impact</param>
+        /// <param name="direction">Movement direction</param>
         public void Initialize(int damage, Vector3 direction)
         {
             Damage = damage;
@@ -20,6 +25,10 @@ namespace Objects
             StartCoroutine(MoveCoroutine());
         }
 
+        /// <summary>
+        /// Moves bullet in the initialized direction during its lifetime
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator MoveCoroutine()
         {
             float lifetime = 0;
@@ -32,6 +41,10 @@ namespace Objects
             PoolManager.Instance.BulletPool.Release(this);
         }
 
+        /// <summary>
+        /// Detects enemy ship and deals damage
+        /// </summary>
+        /// <param name="other"></param>
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Enemy"))

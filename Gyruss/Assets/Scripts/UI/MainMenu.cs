@@ -9,6 +9,9 @@ namespace UI
     {
         [SerializeField] private Button PlayButton;
         
+        /// <summary>
+        /// Initializes main menu elements
+        /// </summary>
         public override void Initialize()
         {
             PlayButton.onClick.RemoveAllListeners();

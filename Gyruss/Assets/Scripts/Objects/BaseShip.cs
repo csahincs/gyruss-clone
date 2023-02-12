@@ -17,12 +17,19 @@ namespace Objects
 
         public Vector3 Direction;
 
+        /// <summary>
+        /// Initializes the ship with given hp
+        /// </summary>
+        /// <param name="hp">Starting health point of the ship</param>
         public virtual void Initialize(int hp)
         {
             Hp = hp;
             Direction = transform.position.normalized;
         }
 
+        /// <summary>
+        /// Updates ships position and rotation
+        /// </summary>
         protected virtual void Update()
         {
             CurrentDiameter = Mathf.Min(CurrentDiameter + LinearDirection * LinearSpeed * Time.deltaTime, MaxDiameter);
@@ -32,6 +39,10 @@ namespace Objects
             transform.LookAt(Vector3.zero);
         }
         
+        /// <summary>
+        /// Decreases health point and despawns accordingly
+        /// </summary>
+        /// <param name="damage"></param>
         public void TakeDamage(int damage)
         {
             Hp -= damage;
@@ -42,6 +53,9 @@ namespace Objects
             }
         }
 
+        /// <summary>
+        /// Despawns the ship
+        /// </summary>
         public abstract void Despawn();
     }
 }

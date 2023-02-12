@@ -5,6 +5,10 @@ namespace Objects
 {
     public class PlayableShip : BaseShip
     {
+        /// <summary>
+        /// Sets initial speed, direction and diameter properties
+        /// </summary>
+        /// <param name="hp">Initial health point</param>
         public override void Initialize(int hp)
         {
             base.Initialize(hp);
@@ -19,6 +23,9 @@ namespace Objects
             CurrentDiameter = GameManager.Instance.PlayableShipDiameter;
         }
 
+        /// <summary>
+        /// Shots a bullet towards the center of the screen
+        /// </summary>
         public void Shoot()
         {
             Bullet bullet = PoolManager.Instance.BulletPool.Get();
@@ -28,6 +35,9 @@ namespace Objects
             bullet.Initialize(1, bulletDirection);
         }
 
+        /// <summary>
+        /// Despawns the ship
+        /// </summary>
         public override void Despawn()
         {
             PoolManager.Instance.PlayableShipPool.Release(this);

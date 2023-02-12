@@ -28,6 +28,9 @@ namespace Managers
         public EventHandler GameStartEventHandler;
         public EventHandler GameEndEventHandler;
 
+        /// <summary>
+        /// Sets main camera and resets game scene
+        /// </summary>
         public override void Awake()
         {
             base.Awake();
@@ -36,18 +39,27 @@ namespace Managers
             ResetGameScene();
         }
 
+        /// <summary>
+        /// Starts the game
+        /// </summary>
         public void StartGame()
         {
             GameStartEventHandler?.Invoke(this, EventArgs.Empty);
             SetupGameScene();
         }
 
+        /// <summary>
+        /// Ends the game
+        /// </summary>
         public void EndGame()
         {
             GameEndEventHandler?.Invoke(this, EventArgs.Empty);
             ResetGameScene();
         }
 
+        /// <summary>
+        /// Create playable ship and initializes player controller and enemy spawn controller accordingly
+        /// </summary>
         private void SetupGameScene()
         {
             if (PlayableShip != null)
@@ -70,6 +82,9 @@ namespace Managers
             EnemySpawnController.Instance.Initialize(5);
         }
 
+        /// <summary>
+        /// Clears game scene
+        /// </summary>
         private void ResetGameScene()
         {
             if (PlayableShip != null)
